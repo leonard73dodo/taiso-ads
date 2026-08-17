@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAISO 广告情报中心</title>
+<style>
+  :root{--bg:#0f1115;--card:#191c23;--card2:#1f232c;--line:#2b303b;--txt:#e8eaed;--sub:#9aa3b2;--accent:#4f8cff;--accent2:#2ecc9b;--warm:#e0533d;--gold:#f0a63a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:40px 20px 70px}
+  .wrap{max-width:900px;margin:0 auto}
+  header{margin-bottom:34px}
+  h1{font-size:28px;font-weight:700;letter-spacing:.3px}
+  header p{color:var(--sub);font-size:14px;margin-top:8px}
+  .stamp{margin-top:14px;font-size:12.5px;color:var(--sub);background:var(--card2);border:1px solid var(--line);display:inline-block;padding:7px 13px;border-radius:8px}
+  .stamp b{color:var(--accent2)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--txt);transition:.16s}
+  .card:hover{transform:translateY(-2px);border-color:#455066}
+  .card .ic{font-size:26px}
+  .card h2{font-size:17px;font-weight:650}
+  .card p{font-size:13px;color:var(--sub);line-height:1.55}
+  .card .go{margin-top:6px;font-size:13px;font-weight:650;color:var(--accent2)}
+  .card.tracker .go{color:var(--gold)}
+  .card.cn .go{color:var(--warm)}
+  .note{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .note h3{font-size:14px;font-weight:650;margin-bottom:8px;color:var(--gold)}
+  .note ul{margin-left:18px;font-size:13px;color:var(--sub)}
+  .note li{margin:5px 0}
+  footer{margin-top:34px;color:#6b7280;font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>TAISO 广告情报中心</h1>
+    <p>Meta 广告库竞品追踪 · 自动更新,点开就是最新</p>
+    <div class="stamp">每天凌晨 5 点自动更新 · 页面生成于 <b id="ts">2026-08-17</b></div>
+  </header>
+
+  <div class="grid">
+    <a class="card tracker" href="tracker.html">
+      <div class="ic">📊</div>
+      <h2>每日广告数追踪</h2>
+      <p>自家品牌 + 同赛道对标(瘦身/血糖)每个主页的 Active 广告数,与上次对比,涨跌榜。</p>
+      <div class="go">查看追踪报告 →</div>
+    </a>
+
+    <a class="card" href="en.html">
+      <div class="ic">🌏</div>
+      <h2>英文品牌库</h2>
+      <p>MY / SG 英文与国际保健品牌,可搜索筛选,点击直达该品牌 Meta 广告库全部素材。</p>
+      <div class="go">打开英文库 →</div>
+    </a>
+
+    <a class="card cn" href="cn.html">
+      <div class="ic">🇲🇾</div>
+      <h2>中文品牌库</h2>
+      <p>大马华人市场中文保健品牌,按品类分组,🔥 标记与 TAISO 同赛道的对手。</p>
+      <div class="go">打开中文库 →</div>
+    </a>
+  </div>
+
+  <div class="note">
+    <h3>使用说明</h3>
+    <ul>
+      <li>广告数是 Meta 广告库的<b>估计值</b>,±1–2 的小波动属正常,看的是大动作(某品牌突然翻倍 = 在 scale;暴跌 = 素材死了或收摊)。</li>
+      <li>追踪名单改动:告诉 Claude 即可,配置存在 Project 的 <code>taiso_ads_tracker_config.md</code>。</li>
+      <li>本页公开可访问,拿到链接的人都能打开——里面只有公开广告库的整理,不含内部数据。</li>
+    </ul>
+  </div>
+
+  <footer>
+    数据来源:Meta Ad Library(公开广告资料库)· 由 Claude 每日自动更新
+  </footer>
+</div>
+</body>
+</html>

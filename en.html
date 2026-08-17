@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 English Supplement Brands · Meta Ad Library (MY/SG)</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#191c23; --card2:#1f232c; --line:#2b303b;
+    --txt:#e8eaed; --sub:#9aa3b2; --accent:#4f8cff; --accent2:#2ecc9b;
+    --chip:#242a35; --hot:#ff6b5d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.5;padding:28px 18px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header h1{font-size:24px;font-weight:700;letter-spacing:.2px}
+  header p{color:var(--sub);font-size:13.5px;margin-top:6px}
+  .meta{margin-top:10px;font-size:12.5px;color:var(--sub)}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 6px;position:sticky;top:0;
+    background:var(--bg);padding:10px 0;z-index:5}
+  input[type=search]{flex:1;min-width:220px;background:var(--card2);border:1px solid var(--line);
+    color:var(--txt);padding:11px 14px;border-radius:10px;font-size:14px;outline:none}
+  input[type=search]::placeholder{color:#6b7280}
+  .count{align-self:center;color:var(--sub);font-size:12.5px;white-space:nowrap}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 18px}
+  .filters button{background:var(--chip);border:1px solid var(--line);color:var(--sub);
+    padding:7px 12px;border-radius:20px;font-size:12.5px;cursor:pointer;transition:.15s}
+  .filters button:hover{color:var(--txt)}
+  .filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .group{margin:26px 0 8px;font-size:14px;font-weight:600;color:var(--accent2);
+    display:flex;align-items:center;gap:8px}
+  .group span.n{color:var(--sub);font-weight:400;font-size:12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px;
+    display:flex;flex-direction:column;gap:9px;transition:.15s}
+  .card:hover{border-color:#3a4150;transform:translateY(-1px)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .card .name{font-size:15.5px;font-weight:650}
+  .card .num{font-size:11px;color:#5b6472;font-variant-numeric:tabular-nums}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:3px 9px;border-radius:6px;background:var(--chip);color:var(--sub)}
+  .tag.mk{background:#20303f;color:#8fc4ff}
+  .tag.hot{background:#3a2320;color:var(--hot)}
+  .card a.btn{margin-top:2px;text-align:center;text-decoration:none;background:var(--accent2);
+    color:#04120d;font-weight:650;font-size:13px;padding:9px;border-radius:8px;transition:.15s}
+  .card a.btn:hover{filter:brightness(1.08)}
+  .hide{display:none!important}
+  footer{margin-top:34px;color:var(--sub);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+  a.src{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" style="display:inline-block;font-size:13px;color:#9aa3b2;text-decoration:none;margin-bottom:16px;border:1px solid #2b303b;background:#1f232c;padding:6px 12px;border-radius:8px">&larr; 返回情报中心</a>
+  <header>
+    <h1>100 个英文保健品品牌 · 在 Meta 打广告（马来西亚 / 新加坡）</h1>
+    <p>竞品广告参考库 · 每个品牌点「查看广告 →」直达该品牌在 Meta 广告资料库的全部广告素材</p>
+    <div class="meta">数据来源：Meta Ad Library（广告资料库）· 检索时间 2026-07-20 · 每周自动更新 2026-08-17 · 状态 Active · 市场 MY + SG　|　🔥 = 与 TAISO ACV 直接对标（苹果醋/瘦身/肠道/排毒/代餐）</div>
+  </header>
+
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="🔍 搜索品牌名 / 品类（例如：胶原、益生菌、生发、男性、儿童…）">
+    <div class="count" id="count"></div>
+  </div>
+  <div class="filters" id="filters"></div>
+
+  <div id="list"></div>
+
+  <footer>
+    共 123 个品牌（含补漏的高投放竞品 Lignosus / Herbanovax / G-NiiB / Total Image / Eu Yan Sang / BBLAB 等）· 点顶部「🌐 DTC官网·高转化」只看有独立官网的品牌，卡片上 DTC★ 越多代表流量/转化越强（依据：广告库在跑量 + 独立官网 + 高转化漏斗打法，非精确网站分析）。链接均为「view_all_page_id」形式。<br>
+    Source: <a class="src" href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a>
+  </footer>
+</div>
+
+<script>
+const B = (n,id,cat,mk,g,hot)=>({n,id,cat,mk,g,hot:!!hot});
+const data = [
+ // A 直接对标：苹果醋/瘦身/肠道/排毒/代餐
+ B("The Purest Co","100301936152629","胶原·瘦身 elixir","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Goli","310668346413198","苹果醋软糖","MY/SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Nano Singapore","286591431214186","益生菌·肠道","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Pro-Gut","111872617967664","消化·抗胀气","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("EssenTree","521365714401660","60天肠道重置","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Spi2ro Plus","960291130502698","肠道·螺旋藻","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Spirelia","122094868634010466","螺旋藻超级食物","MY/SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Spiro JX (Lumine Club)","775923008943017","螺旋藻","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Mizino","510214372185513","巧克力瘦身饮","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Perzenso","103498079478956","瘦身系统","MY/SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Inno Supps","329949444375869","燃脂","MY/SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Alpha Cleanse (Eden Boost)","109059115278456","肝脏排毒","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("DietGrain","495741463622654","黑食瘦身","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("XLite Plus","1053219611210831","瘦身·早燃晚排","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Mira-Q Detox","107181650640216","排毒","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("PRETTY EASY","168120850028181","肠道·瘦身","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Fiboo","211222268747444","代餐·燃脂咖啡","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("FYLL","709465382240429","代餐","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("TasteBudds","102773055293646","代餐","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Medishake","1096275843559637","代餐","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Flommie","778895375307459","代餐","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Shortcutx.co","115152951599008","运动·入门补剂","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ // B 益生菌/综合保健
+ B("IM8 Health","345914995276546","greens·综合","MY/SG","益生菌 / 综合保健"),
+ B("LABO Nutrition","470197696176375","肠道·营养","SG","益生菌 / 综合保健"),
+ B("Glovida","1045176942225736","儿童益生菌","SG","益生菌 / 综合保健"),
+ B("Dr. Ora","102476459193057","益生菌","SG","益生菌 / 综合保健"),
+ B("ZIEHA Wellness","554430801082910","综合保健","SG","益生菌 / 综合保健"),
+ B("PurelyB","1517191275212003","综合保健","MY","益生菌 / 综合保健"),
+ B("Nibbi Greens","597851850076778","绿粉 greens","SG","益生菌 / 综合保健"),
+ B("Radiant Whole Food","673556042815545","有机营养","MY","益生菌 / 综合保健"),
+ B("BEWell Health & Wellness","465307429988511","综合保健","MY","益生菌 / 综合保健"),
+ B("Holistic Way","318347304845316","胶原·维他命","SG","益生菌 / 综合保健"),
+ B("Blackmores","169684383114668","免疫·维他命","SG","益生菌 / 综合保健"),
+ B("Vita Green","317994041402517","灵芝·免疫","SG","益生菌 / 综合保健"),
+ B("AvantHealth","127934740396717","维他命E·护脑","MY","益生菌 / 综合保健"),
+ B("VitaRealm","1035487442987162","泌尿·综合","SG","益生菌 / 综合保健"),
+ B("SpringHealth","104206071288765","眼睛·免疫套装","MY","益生菌 / 综合保健"),
+ B("Reset Health","732805113256818","综合保健","MY","益生菌 / 综合保健"),
+ B("Helanvi","109909182094319","日常活力","MY/SG","益生菌 / 综合保健"),
+ B("TKT Nature","379813398554416","综合保健","MY","益生菌 / 综合保健"),
+ B("onecare","1491085481145439","综合·美容·瘦身","MY","益生菌 / 综合保健"),
+ B("Boonyandco","103712064406006","保健","MY","益生菌 / 综合保健"),
+ B("Vitabiotics","160059967377784","维他命","MY/SG","益生菌 / 综合保健"),
+ B("Nordic Naturals","271642559527866","鱼油 omega","MY/SG","益生菌 / 综合保健"),
+ B("The Health Haven","942830708918752","心脏·体力","MY/SG","益生菌 / 综合保健"),
+ B("CareViva Health","809138868943261","心脏·肝·综合","SG","益生菌 / 综合保健"),
+ B("True Nutra Plus","608454985925989","胆固醇","MY/SG","益生菌 / 综合保健"),
+ B("VitaLife","1070055286185551","尿酸","MY","益生菌 / 综合保健"),
+ B("Superfood Nutrition","112454868521688","超级食物","MY","益生菌 / 综合保健"),
+ B("Dr PPARs Singapore","181084135268841","超级食物","SG","益生菌 / 综合保健"),
+ B("Salveo Organic Barley Grass","364720796728593","血糖·大麦草","SG","益生菌 / 综合保健"),
+ // C 女性/美容内服
+ B("Moom Health","101918721760737","女性荷尔蒙","SG","女性 / 美容内服"),
+ B("Happy Mammoth","1343771369029582","女性荷尔蒙·肠道","MY/SG","女性 / 美容内服"),
+ B("Labrich Wellness","1170510552812401","女性保健","MY","女性 / 美容内服"),
+ B("Concevoir (Feminoria)","120833160173181","备孕","MY","女性 / 美容内服"),
+ B("KYOR","132326719953121","美容内服","SG","女性 / 美容内服"),
+ B("Kitsui Beauty","1212341355452697","胶原美容","MY","女性 / 美容内服"),
+ B("Glowco","112152224848996","美容","MY/SG","女性 / 美容内服"),
+ B("CellLabs","152525934779344","胶原·皮肤","MY","女性 / 美容内服"),
+ B("Korra Lab","499499003236054","口服防晒·淡斑","SG","女性 / 美容内服"),
+ B("Arialabrx","644826572050880","皮肤内服 (NUS)","SG","女性 / 美容内服"),
+ B("Glowadin","110441441382594","皮肤·妊娠纹","MY/SG","女性 / 美容内服"),
+ B("dewy birdnest","1047655935100903","燕窝美容","MY","女性 / 美容内服"),
+ B("iQueen","179721302503494","燕窝","MY","女性 / 美容内服"),
+ B("SL Finest Food","347476618456536","燕窝·可饮美容","MY","女性 / 美容内服"),
+ B("Cocomo beauty","651858848275651","美容代餐","SG","女性 / 美容内服"),
+ // D 头发
+ B("Verble Malaysia","101262379629757","生发","MY","头发"),
+ B("Verble Singapore","415940171602944","生发","SG","头发"),
+ B("Folicares+ / VITACAREs+","755860740935293","Biotin 生发","MY","头发"),
+ B("Fleava","977171272144872","头发增厚","MY/SG","头发"),
+ B("Healthy Hair Science","981785041678819","头发","MY/SG","头发"),
+ B("Ksisters","151076175309822","美容·头发","MY/SG","头发"),
+ // E 关节/银发/肾
+ B("SLS Moflex Plus","554055557783325","关节","MY","关节 / 银发 / 肾"),
+ B("Regenerix Gold","1419388598278425","关节","SG","关节 / 银发 / 肾"),
+ B("Urban Joint Moveon","981756618354784","关节","MY","关节 / 银发 / 肾"),
+ B("Wellness way - Evelyn","394438567085077","关节","MY","关节 / 银发 / 肾"),
+ B("Eldervive Gold","1153530371177340","银发保健","MY","关节 / 银发 / 肾"),
+ B("JMS-Bio Lingzhi","699722009887970","肾脏·灵芝","MY","关节 / 银发 / 肾"),
+ // F 男性/运动
+ B("Boostiva","640197325848501","男性 NAD+","MY/SG","男性 / 运动"),
+ B("BoostivaMen","661560850375716","男性 NAD+","MY/SG","男性 / 运动"),
+ B("Primal Health","684892764706814","男性 NAD+","MY/SG","男性 / 运动"),
+ B("Alphamens","259713807410738","男性荷尔蒙","MY/SG","男性 / 运动"),
+ B("Hecules","105660909269723","男性","MY","男性 / 运动"),
+ B("Almighty Supps","279563935244795","运动补剂","SG","男性 / 运动"),
+ // G 脑/眼/睡眠
+ B("GenPlus Brain Care","108835241668854","护脑","MY","脑 / 眼 / 睡眠"),
+ B("Xandrolab","116570588084918","omega 护脑","MY/SG","脑 / 眼 / 睡眠"),
+ B("Claryvue","1183164021551922","护眼","MY/SG","脑 / 眼 / 睡眠"),
+ B("Restelle","545915341948615","睡眠","MY/SG","脑 / 眼 / 睡眠"),
+ B("Balance Brew","111838044981437","睡眠","SG","脑 / 眼 / 睡眠"),
+ B("Herbal Pharm","115188765176622","助眠·舒缓","SG","脑 / 眼 / 睡眠"),
+ B("Onflowlab","1451355541543068","睡眠软糖","SG","脑 / 眼 / 睡眠"),
+ B("Khevia","1079015488637591","睡眠","MY/SG","脑 / 眼 / 睡眠"),
+ // H 抗老
+ B("Cellular Daily","323056040891183","NMN 抗老","MY/SG","抗老 / NMN"),
+ B("Wellness Decoded","288699261002468","抗老 stack","MY/SG","抗老 / NMN"),
+ // I 儿童
+ B("Goroneko Kids Wellness","894090370446528","儿童保健","MY","儿童"),
+ B("MamiBear","120636844456634","儿童 DHA","MY","儿童"),
+ B("BHK's Singapore","1794696037471899","儿童 DHA·综合","SG","儿童"),
+ B("Ddrops","277485235454773","儿童维 D","MY","儿童"),
+ B("Abbott GROW","105326894520897","儿童营养","SG","儿童"),
+ B("Dutch Lady Kids Nutrition","493873157296961","儿童营养","MY","儿童"),
+ // + 新增 DTC 官网品牌
+ B("Kinohimitsu","201794843170116","胶原·排毒·瘦身","MY/SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Tigrox (by Wellous)","295213317566930","润肺·综合","MY/SG","益生菌 / 综合保健"),
+ B("Swisse","109821904707030","维他命·综合","MY","益生菌 / 综合保健"),
+ B("Aera Labs","380039858994070","女性·综合 DTC","MY","益生菌 / 综合保健"),
+ B("Get Purely Nutrient","139593592561794","肝肾·排毒 DTC","MY/SG","益生菌 / 综合保健"),
+ // + 补漏：高投放英文/国际竞品（Lignosus 等）
+ B("Lignosus","108505338115165","护肺·呼吸·虎乳芝","MY/SG","益生菌 / 综合保健"),
+ B("Herbanovax","1046380041899185","护肺·虎乳芝","MY","益生菌 / 综合保健"),
+ B("G-NiiB","100384163046801","微生态·肠道","SG","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Total Image","100676302765315","瘦身·美体","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("TriHealth Probiotic","105428315658811","益生菌·瘦身","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Eu Yan Sang","146168345417777","中药·保健","SG","益生菌 / 综合保健"),
+ B("ZettaCare","105653155461261","综合保健","MY","益生菌 / 综合保健"),
+ B("Master Nerv","106049768876986","神经·手脚麻","MY","脑 / 眼 / 睡眠"),
+ B("BBLAB","107785155510239","韩国胶原","MY/SG","女性 / 美容内服"),
+ B("Men's First Choice","1261028027090781","人参·男性","MY","男性 / 运动"),
+ // + 每周自动扫描新增 2026-08-17
+ B("Taishou Apple Cider Gummies","890810647452477","苹果醋软糖（TAISO 仿版）","MY","直接对标 · 苹果醋/瘦身/肠道/代餐",1),
+ B("Magnali Health","1092695650583122","关节·长寿","SG","关节 / 银发 / 肾"),
+ B("OseoVital SG","103412552435103","骨骼·关节","SG","关节 / 银发 / 肾"),
+ B("Urix360","906468795885077","泌尿·肾","MY","关节 / 银发 / 肾"),
+ B("VitaHealth Malaysia","269769593134544","维他命·综合","MY","益生菌 / 综合保健"),
+ B("Kordel's","129019870467551","综合补充剂","MY","益生菌 / 综合保健"),
+ B("Natpro","148575085010183","润肺·呼吸","MY","益生菌 / 综合保健"),
+ B("NutrixGold Malaysia","427053388067149","综合营养","MY","益生菌 / 综合保健"),
+];
+// 官网 + DTC 高转化评级（★数=流量/转化强度，依据：广告库在跑量 + 独立官网 + 高转化漏斗打法；非精确网站分析）
+const SITE = {
+ "310668346413198":["goli.com",3], "345914995276546":["im8health.com",3],
+ "329949444375869":["innosupps.com",3], "1343771369029582":["happymammoth.com",3],
+ "100301936152629":["thepurest.co",3], "286591431214186":["nanosingapore.co",3],
+ "201794843170116":["kinohimitsu.com",3], "295213317566930":["wellous.com",3],
+ "101918721760737":["moomhealth.com",2], "470197696176375":["labo-nutrition.com",2],
+ "1035487442987162":["vitarealm.com",2], "279563935244795":["almightysupps.com",2],
+ "323056040891183":["cellulardaily.com",2], "109821904707030":["swisse.com",2],
+ "499499003236054":["korralab.com",2], "1212341355452697":["kitsui.com",2],
+ "1517191275212003":["purelyb.com",2], "318347304845316":["holisticway.com.sg",2],
+ "317994041402517":["vitagreen.com.sg",2], "169684383114668":["blackmores.com.my",2],
+ "271642559527866":["nordicnaturals.com",2], "160059967377784":["vitabiotics.com",2],
+ "1045176942225736":["glovida.com.sg",2], "139593592561794":["",2], "380039858994070":["",2],
+ "108505338115165":["lignosus.com",3], "100384163046801":["g-niib.com",2],
+ "146168345417777":["euyansang.com.sg",2], "100676302765315":["totalimage.com.my",2],
+ "1046380041899185":["herbanovax.com",2]
+};
+
+const linkFor = id => `https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&view_all_page_id=${id}&media_type=all`;
+const groups = [...new Set(data.map(d=>d.g))];
+const listEl = document.getElementById('list');
+const filtersEl = document.getElementById('filters');
+const countEl = document.getElementById('count');
+const qEl = document.getElementById('q');
+let activeG = 'ALL';
+
+// filter chips
+[{k:'ALL',t:'全部'},{k:'HOT',t:'🔥 直接对标'},{k:'DTC',t:'🌐 DTC官网·高转化'},...groups.map(g=>({k:g,t:g}))].forEach(f=>{
+  const b=document.createElement('button');b.textContent=f.t;b.dataset.k=f.k;
+  if(f.k==='ALL')b.classList.add('on');
+  b.onclick=()=>{activeG=f.k;[...filtersEl.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');render();};
+  filtersEl.appendChild(b);
+});
+
+function render(){
+  const q=qEl.value.trim().toLowerCase();
+  listEl.innerHTML='';let shown=0,idx=0;
+  groups.forEach(g=>{
+    const items=data.filter(d=>d.g===g).filter(d=>{
+      if(activeG==='HOT'&&!d.hot)return false;
+      if(activeG==='DTC'&&!SITE[d.id])return false;
+      if(activeG!=='ALL'&&activeG!=='HOT'&&activeG!=='DTC'&&d.g!==activeG)return false;
+      if(q&&!(d.n.toLowerCase().includes(q)||d.cat.toLowerCase().includes(q)||d.mk.toLowerCase().includes(q)))return false;
+      return true;
+    });
+    if(!items.length)return;
+    const h=document.createElement('div');h.className='group';
+    h.innerHTML=`${g} <span class="n">· ${items.length}</span>`;listEl.appendChild(h);
+    const grid=document.createElement('div');grid.className='grid';
+    items.forEach(d=>{
+      const gi=data.indexOf(d)+1;shown++;
+      const card=document.createElement('div');card.className='card';
+      const s=SITE[d.id];
+      card.innerHTML=`
+        <div class="top"><div class="name">${d.n}</div><div class="num">#${String(gi).padStart(2,'0')}</div></div>
+        <div class="tags">
+          <span class="tag">${d.cat}</span>
+          <span class="tag mk">${d.mk}</span>
+          ${d.hot?'<span class="tag hot">🔥 直接对标</span>':''}
+          ${s?`<span class="tag" style="background:#2a2416;color:#f0c040">DTC ${'★'.repeat(s[1])}</span>`:''}
+        </div>
+        <div style="display:flex;gap:6px">
+          <a class="btn" style="flex:1" href="${linkFor(d.id)}" target="_blank" rel="noopener">查看广告 →</a>
+          ${s&&s[0]?`<a class="btn" style="flex:1;background:#2f6df0;color:#fff" href="https://${s[0]}" target="_blank" rel="noopener">🌐 官网</a>`:''}
+        </div>`;
+      grid.appendChild(card);
+    });
+    listEl.appendChild(grid);
+  });
+  countEl.textContent=`显示 ${shown} / ${data.length}`;
+}
+qEl.addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
