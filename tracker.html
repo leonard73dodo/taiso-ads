@@ -1,184 +1,181 @@
-<!doctype html>
-<html lang="zh"><head>
-<meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TAISO 广告数追踪 · 2026-08-27</title>
+<title>TAISO 广告数追踪 · 2026-08-29</title>
 <style>
 :root{--bg:#0f1115;--card:#191c23;--card2:#1f232c;--line:#2b303b;--txt:#e8eaed;--sub:#9aa3b2;--accent:#4f8cff;--accent2:#2ecc9b;--warm:#e0533d;--gold:#f0a63a}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
-.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;padding:20px}
+.wrap{max-width:1200px;margin:0 auto}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-.back{display:inline-block;margin-bottom:16px;font-size:14px;color:var(--sub)}
-h1{font-size:26px;margin:0 0 6px}
-.meta{color:var(--sub);font-size:14px;margin-bottom:18px}
-.meta b{color:var(--txt)}
-.warnbar{background:rgba(240,166,58,.12);border:1px solid var(--gold);color:var(--gold);padding:10px 14px;border-radius:10px;margin-bottom:18px;font-size:14px}
-h2{font-size:19px;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.totalbar{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;gap:34px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
-.totalbar .lbl{color:var(--sub);font-size:13px;display:block}
-.totalbar .val{font-size:26px;font-weight:700}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.card h3{margin:0 0 10px;font-size:15px}
-.tag{color:var(--sub);font-weight:400;font-size:12px}
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th{text-align:left;color:var(--sub);font-weight:500;font-size:12px;padding:6px 4px;border-bottom:1px solid var(--line)}
-td{padding:6px 4px;border-bottom:1px solid rgba(43,48,59,.55)}
-tfoot td{border-top:1px solid var(--line);border-bottom:none;font-weight:700;padding-top:9px}
-.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.back{display:inline-block;margin-bottom:14px;color:var(--sub);font-size:14px}
+h1{font-size:22px;margin:0 0 6px}
+h2{font-size:18px;margin:30px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:0 0 10px;color:var(--txt)}
+h3.up{color:var(--accent2)} h3.dn{color:var(--warm)}
+.meta{color:var(--sub);font-size:13px;margin-bottom:6px}
+.warn{background:rgba(240,166,58,.12);border:1px solid var(--gold);color:var(--gold);padding:10px 12px;border-radius:8px;margin:12px 0;font-size:14px}
+.banner{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+.banner .k{color:var(--sub);font-size:12px;display:block}
+.banner .v{font-size:22px;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--sub);font-weight:500;font-size:12px;padding:4px 6px;border-bottom:1px solid var(--line)}
+td{padding:5px 6px;border-bottom:1px solid rgba(43,48,59,.5)}
+tfoot td{border-top:1px solid var(--line);border-bottom:none;font-weight:600;color:var(--sub)}
+.n{text-align:right;white-space:nowrap}
 .sub{color:var(--sub)}
-.nm{max-width:230px}
-.up{color:var(--accent2);font-weight:600}
-.dn{color:var(--warm);font-weight:600}
-.d0{color:var(--sub)}
-ul.movers{list-style:none;margin:0;padding:0}
-ul.movers li{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px solid rgba(43,48,59,.55);font-size:13.5px}
-ul.movers li:last-child{border-bottom:none}
-.mv-n{flex:1;min-width:0}
-.cat{color:var(--sub);font-size:11px;border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:5px}
-.mv-x{color:var(--sub);font-size:12px;white-space:nowrap}
-.empty{color:var(--sub);font-size:13px;padding:8px 0}
-.note{margin-top:36px;color:var(--sub);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.totalbar{gap:20px}.nm{max-width:none}}
+.up{color:var(--accent2)} .dn{color:var(--warm)} .d0{color:var(--sub)}
+.tag{font-size:11px;color:var(--sub);background:var(--card2);padding:1px 6px;border-radius:4px}
+.foot{color:var(--sub);font-size:13px;margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+@media(max-width:760px){.grid{grid-template-columns:1fr}body{padding:14px}}
 </style></head><body><div class="wrap">
-
 <a class="back" href="index.html">← 返回情报中心</a>
 <h1>广告数追踪</h1>
-<div class="meta">本次 <b>2026-08-27</b> ｜ 上次 <b>2026-08-26</b> ｜ 追踪主页 <b>81</b> 个 ｜ 查询失败 <b>0</b> 个</div>
+<div class="meta">本次 2026-08-29 ｜ 上次 2026-08-27 ｜ 主页总数 81 ｜ 查询失败 0</div>
 
 
-<h2>1 · 自家品牌</h2>
-<div class="totalbar">
-  <div><span class="lbl">本次广告总数</span><span class="val">2148</span></div>
-  <div><span class="lbl">上次</span><span class="val sub">2109</span></div>
-  <div><span class="lbl">变化</span><span class="val"><span class="up">▲39</span></span></div>
+<h2>Section 1 · 自家品牌</h2>
+<div class="banner">
+  <div><span class="k">自家广告总数（本次）</span><span class="v">2301</span></div>
+  <div><span class="k">上次</span><span class="v sub">2148</span></div>
+  <div><span class="k">变化</span><span class="v"><span class="up">▲153</span></span></div>
 </div>
 <div class="grid">
-<div class="card"><h3>Hishin <span class="tag">22 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=495741463622654&media_type=all" target="_blank" rel="noopener">Hishin DietGrain 黑食瘦身</a></td><td class=num>151</td><td class=num sub>157</td><td class=num><span class="dn">▼6</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1165181186672383&media_type=all" target="_blank" rel="noopener">Hishin EggOn 备孕</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=585522571314076&media_type=all" target="_blank" rel="noopener">Hishin Enerlean Gold 营养瘦身</a></td><td class=num>93</td><td class=num sub>63</td><td class=num><span class="up">▲30</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=587407444461405&media_type=all" target="_blank" rel="noopener">Hishin EyeVita 护眼王</a></td><td class=num>96</td><td class=num sub>85</td><td class=num><span class="up">▲11</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=735514456301262&media_type=all" target="_blank" rel="noopener">Hishin GlowGrain 丰胸代餐</a></td><td class=num>64</td><td class=num sub>53</td><td class=num><span class="up">▲11</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=999290533267461&media_type=all" target="_blank" rel="noopener">Hishin GlowPlus 回春丰胸软糖</a></td><td class=num>86</td><td class=num sub>93</td><td class=num><span class="dn">▼7</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1001867503007392&media_type=all" target="_blank" rel="noopener">Hishin Androsyn 男性</a></td><td class=num>170</td><td class=num sub>193</td><td class=num><span class="dn">▼23</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1179743021889364&media_type=all" target="_blank" rel="noopener">Hishin BurnBean 燃豆咖啡代餐</a></td><td class=num>34</td><td class=num sub>38</td><td class=num><span class="dn">▼4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126629397197488&media_type=all" target="_blank" rel="noopener">Hishin EaseNight 睡眠软糖</a></td><td class=num>53</td><td class=num sub>66</td><td class=num><span class="dn">▼13</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1088056967731023&media_type=all" target="_blank" rel="noopener">Hishin HemoGreen 云芝仙人掌</a></td><td class=num>13</td><td class=num sub>19</td><td class=num><span class="dn">▼6</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=481304608399690&media_type=all" target="_blank" rel="noopener">Hishin NMN Glow+ 回春密</a></td><td class=num>79</td><td class=num sub>74</td><td class=num><span class="up">▲5</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1172474949282557&media_type=all" target="_blank" rel="noopener">Hishin Oatsy One 护胃瘦身麦</a></td><td class=num>78</td><td class=num sub>98</td><td class=num><span class="dn">▼20</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106644649144089&media_type=all" target="_blank" rel="noopener">Hishin Regen 血糖管理专家</a></td><td class=num>16</td><td class=num sub>6</td><td class=num><span class="up">▲10</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=756723287530405&media_type=all" target="_blank" rel="noopener">Hishin Regen Gold 降糖早餐</a></td><td class=num>123</td><td class=num sub>82</td><td class=num><span class="up">▲41</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1147990278401167&media_type=all" target="_blank" rel="noopener">Hishin Regen Core 降糖王</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1194612880393343&media_type=all" target="_blank" rel="noopener">Hishin Regen Cocoa 降糖可可</a></td><td class=num>26</td><td class=num sub>32</td><td class=num><span class="dn">▼6</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=725761530610175&media_type=all" target="_blank" rel="noopener">Hishin Regena 清糖王(待确认)</a></td><td class=num>206</td><td class=num sub>162</td><td class=num><span class="up">▲44</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1053219611210831&media_type=all" target="_blank" rel="noopener">Hishin XLite Plus 早燃晚排</a></td><td class=num>114</td><td class=num sub>112</td><td class=num><span class="up">▲2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=678457882024663&media_type=all" target="_blank" rel="noopener">Hishin XSlim 控食王</a></td><td class=num>21</td><td class=num sub>21</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=862312533642583&media_type=all" target="_blank" rel="noopener">Hishin ZenGastro 健脾护胃王</a></td><td class=num>7</td><td class=num sub>7</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=650533898139164&media_type=all" target="_blank" rel="noopener">Hishin Prune (Taishin排毒黑枣精)</a></td><td class=num>107</td><td class=num sub>95</td><td class=num><span class="up">▲12</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1254623947731642&media_type=all" target="_blank" rel="noopener">Hishin Prune (Taishin植萃排毒黑枣)</a></td><td class=num>26</td><td class=num sub>22</td><td class=num><span class="up">▲4</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>1563</td><td class=num sub>1478</td><td class=num><span class="up">▲85</span></td></tr></tfoot>
+<div class="card">
+<h3>Hishin</h3>
+<table>
+<thead><tr><th>产品</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=495741463622654&media_type=all" target="_blank" rel="noopener">Hishin DietGrain 黑食瘦身</a></td><td class="n">170</td><td class="n sub">151</td><td class="n"><span class="up">▲19</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1165181186672383&media_type=all" target="_blank" rel="noopener">Hishin EggOn 备孕</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=585522571314076&media_type=all" target="_blank" rel="noopener">Hishin Enerlean Gold 营养瘦身</a></td><td class="n">80</td><td class="n sub">93</td><td class="n"><span class="dn">▼13</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=587407444461405&media_type=all" target="_blank" rel="noopener">Hishin EyeVita 护眼王</a></td><td class="n">106</td><td class="n sub">96</td><td class="n"><span class="up">▲10</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=735514456301262&media_type=all" target="_blank" rel="noopener">Hishin GlowGrain 丰胸代餐</a></td><td class="n">71</td><td class="n sub">64</td><td class="n"><span class="up">▲7</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=999290533267461&media_type=all" target="_blank" rel="noopener">Hishin GlowPlus 回春丰胸软糖</a></td><td class="n">112</td><td class="n sub">86</td><td class="n"><span class="up">▲26</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1001867503007392&media_type=all" target="_blank" rel="noopener">Hishin Androsyn 男性</a></td><td class="n">172</td><td class="n sub">170</td><td class="n"><span class="up">▲2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1179743021889364&media_type=all" target="_blank" rel="noopener">Hishin BurnBean 燃豆咖啡代餐</a></td><td class="n">60</td><td class="n sub">34</td><td class="n"><span class="up">▲26</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126629397197488&media_type=all" target="_blank" rel="noopener">Hishin EaseNight 睡眠软糖</a></td><td class="n">66</td><td class="n sub">53</td><td class="n"><span class="up">▲13</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1088056967731023&media_type=all" target="_blank" rel="noopener">Hishin HemoGreen 云芝仙人掌</a></td><td class="n">24</td><td class="n sub">13</td><td class="n"><span class="up">▲11</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=481304608399690&media_type=all" target="_blank" rel="noopener">Hishin NMN Glow+ 回春密</a></td><td class="n">88</td><td class="n sub">79</td><td class="n"><span class="up">▲9</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1172474949282557&media_type=all" target="_blank" rel="noopener">Hishin Oatsy One 护胃瘦身麦</a></td><td class="n">89</td><td class="n sub">78</td><td class="n"><span class="up">▲11</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106644649144089&media_type=all" target="_blank" rel="noopener">Hishin Regen 血糖管理专家</a></td><td class="n">13</td><td class="n sub">16</td><td class="n"><span class="dn">▼3</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=756723287530405&media_type=all" target="_blank" rel="noopener">Hishin Regen Gold 降糖早餐</a></td><td class="n">103</td><td class="n sub">123</td><td class="n"><span class="dn">▼20</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1147990278401167&media_type=all" target="_blank" rel="noopener">Hishin Regen Core 降糖王</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1194612880393343&media_type=all" target="_blank" rel="noopener">Hishin Regen Cocoa 降糖可可</a></td><td class="n">32</td><td class="n sub">26</td><td class="n"><span class="up">▲6</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=725761530610175&media_type=all" target="_blank" rel="noopener">Hishin Regena 清糖王</a></td><td class="n">280</td><td class="n sub">206</td><td class="n"><span class="up">▲74</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1053219611210831&media_type=all" target="_blank" rel="noopener">Hishin XLite Plus 早燃晚排</a></td><td class="n">112</td><td class="n sub">114</td><td class="n"><span class="dn">▼2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=678457882024663&media_type=all" target="_blank" rel="noopener">Hishin XSlim 控食王</a></td><td class="n">21</td><td class="n sub">21</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=862312533642583&media_type=all" target="_blank" rel="noopener">Hishin ZenGastro 健脾护胃王</a></td><td class="n">7</td><td class="n sub">7</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=650533898139164&media_type=all" target="_blank" rel="noopener">Hishin Prune 排毒黑枣精</a></td><td class="n">96</td><td class="n sub">107</td><td class="n"><span class="dn">▼11</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1254623947731642&media_type=all" target="_blank" rel="noopener">Hishin Prune 植萃排毒黑枣</a></td><td class="n">18</td><td class="n sub">26</td><td class="n"><span class="dn">▼8</span></td></tr>
+</tbody><tfoot><tr><td>小计</td><td class="n">1720</td><td class="n sub">1563</td><td class="n"><span class="up">▲157</span></td></tr></tfoot>
 </table></div>
-<div class="card"><h3>Taishin <span class="tag">2 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=708374739034166&media_type=all" target="_blank" rel="noopener">Taishin Taiso 苹果醋</a></td><td class=num>174</td><td class=num sub>178</td><td class=num><span class="dn">▼4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=890810647452477&media_type=all" target="_blank" rel="noopener">Taishin Taishou 苹果醋软糖</a></td><td class=num>141</td><td class=num sub>136</td><td class=num><span class="up">▲5</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>315</td><td class=num sub>314</td><td class=num><span class="up">▲1</span></td></tr></tfoot>
+<div class="card">
+<h3>Taishin</h3>
+<table>
+<thead><tr><th>产品</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=708374739034166&media_type=all" target="_blank" rel="noopener">Taishin Taiso 苹果醋</a></td><td class="n">172</td><td class="n sub">174</td><td class="n"><span class="dn">▼2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=890810647452477&media_type=all" target="_blank" rel="noopener">Taishin Taishou 苹果醋软糖</a></td><td class="n">144</td><td class="n sub">141</td><td class="n"><span class="up">▲3</span></td></tr>
+</tbody><tfoot><tr><td>小计</td><td class="n">316</td><td class="n sub">315</td><td class="n"><span class="up">▲1</span></td></tr></tfoot>
 </table></div>
-<div class="card"><h3>Taiyo <span class="tag">5 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=112553648172794&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 护膝专家</a></td><td class=num>40</td><td class=num sub>55</td><td class=num><span class="dn">▼15</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117097977986532&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 线下旗舰店</a></td><td class=num>14</td><td class=num sub>14</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=515886858269681&media_type=all" target="_blank" rel="noopener">Taiyo NeckGuard 颈椎专家</a></td><td class=num>35</td><td class=num sub>37</td><td class=num><span class="dn">▼2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107789959035924&media_type=all" target="_blank" rel="noopener">Taiyo WaistGuard 脊椎专家(待确认)</a></td><td class=num>53</td><td class=num sub>76</td><td class=num><span class="dn">▼23</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1034190033116290&media_type=all" target="_blank" rel="noopener">Taiyo Patch 药贴王</a></td><td class=num>28</td><td class=num sub>28</td><td class=num><span class="d0">–</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>170</td><td class=num sub>210</td><td class=num><span class="dn">▼40</span></td></tr></tfoot>
+<div class="card">
+<h3>Taiyo</h3>
+<table>
+<thead><tr><th>产品</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=112553648172794&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 护膝专家</a></td><td class="n">46</td><td class="n sub">40</td><td class="n"><span class="up">▲6</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117097977986532&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 线下旗舰店</a></td><td class="n">14</td><td class="n sub">14</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=515886858269681&media_type=all" target="_blank" rel="noopener">Taiyo NeckGuard 颈椎专家</a></td><td class="n">35</td><td class="n sub">35</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107789959035924&media_type=all" target="_blank" rel="noopener">Taiyo WaistGuard 脊椎专家</a></td><td class="n">24</td><td class="n sub">53</td><td class="n"><span class="dn">▼29</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1034190033116290&media_type=all" target="_blank" rel="noopener">Taiyo Patch 药贴王</a></td><td class="n">29</td><td class="n sub">28</td><td class="n"><span class="up">▲1</span></td></tr>
+</tbody><tfoot><tr><td>小计</td><td class="n">148</td><td class="n sub">170</td><td class="n"><span class="dn">▼22</span></td></tr></tfoot>
 </table></div>
-<div class="card"><h3>Pure Harmony <span class="tag">2 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1164831950050337&media_type=all" target="_blank" rel="noopener">Pure Harmony Viproz Plus 男人救星</a></td><td class=num>100</td><td class=num sub>100</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=561719493701118&media_type=all" target="_blank" rel="noopener">Pure Harmony Vitanest 金丝瘦身燕窝</a></td><td class=num>0</td><td class=num sub>7</td><td class=num><span class="dn">▼7</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>100</td><td class=num sub>107</td><td class=num><span class="dn">▼7</span></td></tr></tfoot>
+<div class="card">
+<h3>Pure Harmony</h3>
+<table>
+<thead><tr><th>产品</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1164831950050337&media_type=all" target="_blank" rel="noopener">Pure Harmony Viproz Plus 男人救星</a></td><td class="n">117</td><td class="n sub">100</td><td class="n"><span class="up">▲17</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=561719493701118&media_type=all" target="_blank" rel="noopener">Pure Harmony Vitanest 金丝瘦身燕窝</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+</tbody><tfoot><tr><td>小计</td><td class="n">117</td><td class="n sub">100</td><td class="n"><span class="up">▲17</span></td></tr></tfoot>
 </table></div>
 </div>
 
-<h2>2 · 同赛道对标</h2>
+<h2>Section 2 · 同赛道对标</h2>
 <div class="grid">
-  <div class="card"><h3>Top 5 涨幅 <span class="tag">竞品</span></h3><ul class=movers><li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a> <span class="cat">血糖</span></span><span class="up">▲32</span><span class="mv-x">21 → 53</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117295454729212&media_type=all" target="_blank" rel="noopener">GML 冠脉宁</a> <span class="cat">血糖</span></span><span class="up">▲16</span><span class="mv-x">83 → 99</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a> <span class="cat">血糖</span></span><span class="up">▲14</span><span class="mv-x">178 → 192</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a> <span class="cat">血糖</span></span><span class="up">▲9</span><span class="mv-x">52 → 61</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a> <span class="cat">瘦身</span></span><span class="up">▲8</span><span class="mv-x">75 → 83</span></li></ul></div>
-  <div class="card"><h3>Top 5 跌幅 <span class="tag">竞品</span></h3><ul class=movers><li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a> <span class="cat">瘦身</span></span><span class="dn">▼52</span><span class="mv-x">74 → 22</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a> <span class="cat">瘦身</span></span><span class="dn">▼29</span><span class="mv-x">237 → 208</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a> <span class="cat">瘦身</span></span><span class="dn">▼18</span><span class="mv-x">39 → 21</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a> <span class="cat">瘦身</span></span><span class="dn">▼17</span><span class="mv-x">209 → 192</span></li>
-<li><span class=mv-n><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a> <span class="cat">血糖</span></span><span class="dn">▼16</span><span class="mv-x">105 → 89</span></li></ul></div>
+<div class="card"><h3 class="up">Top 5 涨幅（竞品）</h3><table><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a> <span class="tag">血糖</span></td><td class="n">217</td><td class="n"><span class="up">▲25</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a> <span class="tag">血糖</span></td><td class="n">73</td><td class="n"><span class="up">▲20</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a> <span class="tag">瘦身</span></td><td class="n">37</td><td class="n"><span class="up">▲16</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a> <span class="tag">瘦身</span></td><td class="n">69</td><td class="n"><span class="up">▲15</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a> <span class="tag">瘦身</span></td><td class="n">92</td><td class="n"><span class="up">▲9</span></td></tr>
+</tbody></table></div>
+<div class="card"><h3 class="dn">Top 5 跌幅（竞品）</h3><table><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117295454729212&media_type=all" target="_blank" rel="noopener">GML 冠脉宁</a> <span class="tag">血糖</span></td><td class="n">43</td><td class="n"><span class="dn">▼56</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a> <span class="tag">瘦身</span></td><td class="n">149</td><td class="n"><span class="dn">▼43</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=798972756641147&media_type=all" target="_blank" rel="noopener">SimSo HQ</a> <span class="tag">瘦身</span></td><td class="n">0</td><td class="n"><span class="dn">▼29</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a> <span class="tag">血糖</span></td><td class="n">72</td><td class="n"><span class="dn">▼17</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a> <span class="tag">血糖</span></td><td class="n">51</td><td class="n"><span class="dn">▼10</span></td></tr>
+</tbody></table></div>
 </div>
-<div class="grid" style="margin-top:16px">
-<div class="card"><h3>瘦身 <span class="tag">35 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a></td><td class=num>83</td><td class=num sub>75</td><td class=num><span class="up">▲8</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102688172513578&media_type=all" target="_blank" rel="noopener">Zinnia Inner Cleanse 排毒王</a></td><td class=num>17</td><td class=num sub>9</td><td class=num><span class="up">▲8</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=971645142694097&media_type=all" target="_blank" rel="noopener">Byeing Zenso 真瘦</a></td><td class=num>6</td><td class=num sub>2</td><td class=num><span class="up">▲4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=111692404933169&media_type=all" target="_blank" rel="noopener">巴黎女王 Paris Yee</a></td><td class=num>10</td><td class=num sub>6</td><td class=num><span class="up">▲4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=110780597014142&media_type=all" target="_blank" rel="noopener">Belife 燃脂</a></td><td class=num>46</td><td class=num sub>45</td><td class=num><span class="up">▲1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1128437340361708&media_type=all" target="_blank" rel="noopener">Whole &amp; Well 溶脂</a></td><td class=num>23</td><td class=num sub>22</td><td class=num><span class="up">▲1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=330899167321574&media_type=all" target="_blank" rel="noopener">Ruijia 蕊佳红豆纤水茶</a></td><td class=num>145</td><td class=num sub>144</td><td class=num><span class="up">▲1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=108859705313136&media_type=all" target="_blank" rel="noopener">The Future Food 营养先锋</a></td><td class=num>7</td><td class=num sub>6</td><td class=num><span class="up">▲1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104153315663754&media_type=all" target="_blank" rel="noopener">Spiro排毒糖 淇淇</a></td><td class=num>15</td><td class=num sub>14</td><td class=num><span class="up">▲1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=248196168370336&media_type=all" target="_blank" rel="noopener">Beyoute 瘦身Kombucha</a></td><td class=num>16</td><td class=num sub>16</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103498079478956&media_type=all" target="_blank" rel="noopener">Perzenso 瘦身系统</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=550309345059195&media_type=all" target="_blank" rel="noopener">Moon Moon Nubright</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=139922599204851&media_type=all" target="_blank" rel="noopener">DS Plus 燃饮咖啡</a></td><td class=num>33</td><td class=num sub>33</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1096729120188510&media_type=all" target="_blank" rel="noopener">SimSo 30天简单瘦</a></td><td class=num>5</td><td class=num sub>5</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=798972756641147&media_type=all" target="_blank" rel="noopener">SimSo HQ</a></td><td class=num>29</td><td class=num sub>29</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=264798386722101&media_type=all" target="_blank" rel="noopener">凯歆 突破卡重</a></td><td class=num>2</td><td class=num sub>2</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1064140376772756&media_type=all" target="_blank" rel="noopener">辣椒仔 Spiro Plus</a></td><td class=num>5</td><td class=num sub>5</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107181650640216&media_type=all" target="_blank" rel="noopener">Mira-Q Detox</a></td><td class=num>19</td><td class=num sub>19</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=768816909649757&media_type=all" target="_blank" rel="noopener">CellDox 排毒清肠饮</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100264976233500&media_type=all" target="_blank" rel="noopener">Genten Enzyme 野菜酵素</a></td><td class=num>5</td><td class=num sub>5</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=201794843170116&media_type=all" target="_blank" rel="noopener">Kinohimitsu</a></td><td class=num>41</td><td class=num sub>41</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100676302765315&media_type=all" target="_blank" rel="noopener">Total Image</a></td><td class=num>22</td><td class=num sub>22</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105428315658811&media_type=all" target="_blank" rel="noopener">TriHealth Probiotic</a></td><td class=num>81</td><td class=num sub>81</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104026822615350&media_type=all" target="_blank" rel="noopener">MIASO 碳油阻断</a></td><td class=num>11</td><td class=num sub>12</td><td class=num><span class="dn">▼1</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=317011621492659&media_type=all" target="_blank" rel="noopener">Byeing Zenso 瘦身</a></td><td class=num>20</td><td class=num sub>22</td><td class=num><span class="dn">▼2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=634495616406565&media_type=all" target="_blank" rel="noopener">Minerva 植物Collagen代餐</a></td><td class=num>106</td><td class=num sub>108</td><td class=num><span class="dn">▼2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103413825416567&media_type=all" target="_blank" rel="noopener">Mzn 日本塑身益菌王</a></td><td class=num>79</td><td class=num sub>82</td><td class=num><span class="dn">▼3</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=732281544153609&media_type=all" target="_blank" rel="noopener">Magic Mocca 养生咖啡</a></td><td class=num>16</td><td class=num sub>19</td><td class=num><span class="dn">▼3</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1091617867371366&media_type=all" target="_blank" rel="noopener">Byeing spiro 小瑙</a></td><td class=num>20</td><td class=num sub>23</td><td class=num><span class="dn">▼3</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100301936152629&media_type=all" target="_blank" rel="noopener">The Purest Co</a></td><td class=num>40</td><td class=num sub>44</td><td class=num><span class="dn">▼4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a></td><td class=num>54</td><td class=num sub>60</td><td class=num><span class="dn">▼6</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a></td><td class=num>192</td><td class=num sub>209</td><td class=num><span class="dn">▼17</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a></td><td class=num>21</td><td class=num sub>39</td><td class=num><span class="dn">▼18</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a></td><td class=num>208</td><td class=num sub>237</td><td class=num><span class="dn">▼29</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a></td><td class=num>22</td><td class=num sub>74</td><td class=num><span class="dn">▼52</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>1399</td><td class=num sub>1510</td><td class=num><span class="dn">▼111</span></td></tr></tfoot>
-</table></div>
-<div class="card"><h3>血糖 <span class="tag">15 个主页</span></h3><table>
-<thead><tr><th>产品 / 品牌</th><th class=num>本次</th><th class=num>上次</th><th class=num>涨跌</th></tr></thead>
-<tbody><tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a></td><td class=num>53</td><td class=num sub>21</td><td class=num><span class="up">▲32</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117295454729212&media_type=all" target="_blank" rel="noopener">GML 冠脉宁</a></td><td class=num>99</td><td class=num sub>83</td><td class=num><span class="up">▲16</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a></td><td class=num>192</td><td class=num sub>178</td><td class=num><span class="up">▲14</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a></td><td class=num>61</td><td class=num sub>52</td><td class=num><span class="up">▲9</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107781472169894&media_type=all" target="_blank" rel="noopener">GoHerb 三高红籽油</a></td><td class=num>50</td><td class=num sub>43</td><td class=num><span class="up">▲7</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105565861190206&media_type=all" target="_blank" rel="noopener">Multigrainz 谷物血糖</a></td><td class=num>78</td><td class=num sub>73</td><td class=num><span class="up">▲5</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106079252379358&media_type=all" target="_blank" rel="noopener">忆品茶 心血管</a></td><td class=num>22</td><td class=num sub>18</td><td class=num><span class="up">▲4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=394824403704623&media_type=all" target="_blank" rel="noopener">NuPluse 心生命</a></td><td class=num>89</td><td class=num sub>85</td><td class=num><span class="up">▲4</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126924703832571&media_type=all" target="_blank" rel="noopener">Kingwell 通芯王</a></td><td class=num>198</td><td class=num sub>196</td><td class=num><span class="up">▲2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=461892820321224&media_type=all" target="_blank" rel="noopener">断糖专家</a></td><td class=num>31</td><td class=num sub>31</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=101233342731412&media_type=all" target="_blank" rel="noopener">NeBora by D&#x27;Pro</a></td><td class=num>0</td><td class=num sub>0</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104840942700034&media_type=all" target="_blank" rel="noopener">Great Tree 红麴之父</a></td><td class=num>14</td><td class=num sub>14</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=687273617808831&media_type=all" target="_blank" rel="noopener">Pris Wellness</a></td><td class=num>2</td><td class=num sub>2</td><td class=num><span class="d0">–</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103386082411176&media_type=all" target="_blank" rel="noopener">NeBora 控糖营养奶</a></td><td class=num>35</td><td class=num sub>37</td><td class=num><span class="dn">▼2</span></td></tr>
-<tr><td class=nm><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a></td><td class=num>89</td><td class=num sub>105</td><td class=num><span class="dn">▼16</span></td></tr></tbody>
-<tfoot><tr><td class=nm>小计</td><td class=num>1013</td><td class=num sub>938</td><td class=num><span class="up">▲75</span></td></tr></tfoot>
-</table></div>
+<div class="grid" style="margin-top:14px">
+<div class="card"><h3>瘦身</h3><table>
+<thead><tr><th>品牌</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a></td><td class="n">37</td><td class="n sub">21</td><td class="n"><span class="up">▲16</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a></td><td class="n">69</td><td class="n sub">54</td><td class="n"><span class="up">▲15</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a></td><td class="n">92</td><td class="n sub">83</td><td class="n"><span class="up">▲9</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a></td><td class="n">212</td><td class="n sub">208</td><td class="n"><span class="up">▲4</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102688172513578&media_type=all" target="_blank" rel="noopener">Zinnia Inner Cleanse 排毒王</a></td><td class="n">21</td><td class="n sub">17</td><td class="n"><span class="up">▲4</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=634495616406565&media_type=all" target="_blank" rel="noopener">Minerva 植物Collagen代餐</a></td><td class="n">108</td><td class="n sub">106</td><td class="n"><span class="up">▲2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=110780597014142&media_type=all" target="_blank" rel="noopener">Belife 燃脂</a></td><td class="n">47</td><td class="n sub">46</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=201794843170116&media_type=all" target="_blank" rel="noopener">Kinohimitsu</a></td><td class="n">42</td><td class="n sub">41</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a></td><td class="n">23</td><td class="n sub">22</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104026822615350&media_type=all" target="_blank" rel="noopener">MIASO 碳油阻断</a></td><td class="n">12</td><td class="n sub">11</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=330899167321574&media_type=all" target="_blank" rel="noopener">Ruijia 蕊佳红豆纤水茶</a></td><td class="n">145</td><td class="n sub">145</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105428315658811&media_type=all" target="_blank" rel="noopener">TriHealth Probiotic</a></td><td class="n">81</td><td class="n sub">81</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100301936152629&media_type=all" target="_blank" rel="noopener">The Purest Co</a></td><td class="n">40</td><td class="n sub">40</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=139922599204851&media_type=all" target="_blank" rel="noopener">DS Plus 燃饮咖啡</a></td><td class="n">33</td><td class="n sub">33</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1128437340361708&media_type=all" target="_blank" rel="noopener">Whole &amp; Well 溶脂</a></td><td class="n">23</td><td class="n sub">23</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100676302765315&media_type=all" target="_blank" rel="noopener">Total Image</a></td><td class="n">22</td><td class="n sub">22</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=317011621492659&media_type=all" target="_blank" rel="noopener">Byeing Zenso 瘦身</a></td><td class="n">20</td><td class="n sub">20</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1091617867371366&media_type=all" target="_blank" rel="noopener">Byeing spiro 小瑙</a></td><td class="n">20</td><td class="n sub">20</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107181650640216&media_type=all" target="_blank" rel="noopener">Mira-Q Detox</a></td><td class="n">19</td><td class="n sub">19</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=732281544153609&media_type=all" target="_blank" rel="noopener">Magic Mocca 养生咖啡</a></td><td class="n">16</td><td class="n sub">16</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=111692404933169&media_type=all" target="_blank" rel="noopener">巴黎女王 Paris Yee</a></td><td class="n">10</td><td class="n sub">10</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1096729120188510&media_type=all" target="_blank" rel="noopener">SimSo 30天简单瘦</a></td><td class="n">5</td><td class="n sub">5</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1064140376772756&media_type=all" target="_blank" rel="noopener">辣椒仔 Spiro Plus</a></td><td class="n">5</td><td class="n sub">5</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100264976233500&media_type=all" target="_blank" rel="noopener">Genten Enzyme 野菜酵素</a></td><td class="n">5</td><td class="n sub">5</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=264798386722101&media_type=all" target="_blank" rel="noopener">凯歆 突破卡重</a></td><td class="n">2</td><td class="n sub">2</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103498079478956&media_type=all" target="_blank" rel="noopener">Perzenso 瘦身系统</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=550309345059195&media_type=all" target="_blank" rel="noopener">Moon Moon Nubright</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=768816909649757&media_type=all" target="_blank" rel="noopener">CellDox 排毒清肠饮</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=108859705313136&media_type=all" target="_blank" rel="noopener">The Future Food 营养先锋</a></td><td class="n">6</td><td class="n sub">7</td><td class="n"><span class="dn">▼1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104153315663754&media_type=all" target="_blank" rel="noopener">Spiro排毒糖 淇淇</a></td><td class="n">13</td><td class="n sub">15</td><td class="n"><span class="dn">▼2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=248196168370336&media_type=all" target="_blank" rel="noopener">Beyoute 瘦身Kombucha</a></td><td class="n">13</td><td class="n sub">16</td><td class="n"><span class="dn">▼3</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103413825416567&media_type=all" target="_blank" rel="noopener">Mzn 日本塑身益菌王</a></td><td class="n">74</td><td class="n sub">79</td><td class="n"><span class="dn">▼5</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=971645142694097&media_type=all" target="_blank" rel="noopener">Byeing Zenso 真瘦</a></td><td class="n">0</td><td class="n sub">6</td><td class="n"><span class="dn">▼6</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=798972756641147&media_type=all" target="_blank" rel="noopener">SimSo HQ</a></td><td class="n">0</td><td class="n sub">29</td><td class="n"><span class="dn">▼29</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a></td><td class="n">149</td><td class="n sub">192</td><td class="n"><span class="dn">▼43</span></td></tr>
+</tbody></table></div>
+<div class="card"><h3>血糖</h3><table>
+<thead><tr><th>品牌</th><th class="n">本次</th><th class="n">上次</th><th class="n">涨跌</th></tr></thead><tbody>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a></td><td class="n">217</td><td class="n sub">192</td><td class="n"><span class="up">▲25</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a></td><td class="n">73</td><td class="n sub">53</td><td class="n"><span class="up">▲20</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105565861190206&media_type=all" target="_blank" rel="noopener">Multigrainz 谷物血糖</a></td><td class="n">87</td><td class="n sub">78</td><td class="n"><span class="up">▲9</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=394824403704623&media_type=all" target="_blank" rel="noopener">NuPluse 心生命</a></td><td class="n">91</td><td class="n sub">89</td><td class="n"><span class="up">▲2</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126924703832571&media_type=all" target="_blank" rel="noopener">Kingwell 通芯王</a></td><td class="n">199</td><td class="n sub">198</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=687273617808831&media_type=all" target="_blank" rel="noopener">Pris Wellness</a></td><td class="n">3</td><td class="n sub">2</td><td class="n"><span class="up">▲1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107781472169894&media_type=all" target="_blank" rel="noopener">GoHerb 三高红籽油</a></td><td class="n">50</td><td class="n sub">50</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103386082411176&media_type=all" target="_blank" rel="noopener">NeBora 控糖营养奶</a></td><td class="n">35</td><td class="n sub">35</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=461892820321224&media_type=all" target="_blank" rel="noopener">断糖专家</a></td><td class="n">31</td><td class="n sub">31</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104840942700034&media_type=all" target="_blank" rel="noopener">Great Tree 红麴之父</a></td><td class="n">14</td><td class="n sub">14</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=101233342731412&media_type=all" target="_blank" rel="noopener">NeBora by D&#x27;Pro</a></td><td class="n">0</td><td class="n sub">0</td><td class="n"><span class="d0">–</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106079252379358&media_type=all" target="_blank" rel="noopener">忆品茶 心血管</a></td><td class="n">21</td><td class="n sub">22</td><td class="n"><span class="dn">▼1</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a></td><td class="n">51</td><td class="n sub">61</td><td class="n"><span class="dn">▼10</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a></td><td class="n">72</td><td class="n sub">89</td><td class="n"><span class="dn">▼17</span></td></tr>
+<tr><td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117295454729212&media_type=all" target="_blank" rel="noopener">GML 冠脉宁</a></td><td class="n">43</td><td class="n sub">99</td><td class="n"><span class="dn">▼56</span></td></tr>
+</tbody></table></div>
 </div>
 
-<div class="note">数字是 Meta 广告库的<b>估计值</b>，±1–2 条属于正常波动，不用在意。要看的是大动作 —— 某个牌子突然加十几二十条，或者一下子砍掉一半。</div>
-
+<div class="foot">数字是 Meta 的估计值，上下 1–2 条属于正常波动，不用紧张。要看的是大动作 —— 突然加几十条，或者整个停掉。</div>
 </div></body></html>
