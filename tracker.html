@@ -1,701 +1,724 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAISO 广告数追踪</title>
 <style>
-  :root {
-    --bg:#0f1115; --card:#191c23; --card2:#1f232c; --line:#2b303b;
-    --txt:#e8eaed; --sub:#9aa3b2; --accent:#4f8cff; --accent2:#2ecc9b; --warm:#e0533d; --gold:#f0a63a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--txt); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    margin: 0; padding: 24px 16px 60px; line-height: 1.5;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1200px; margin: 0 auto; }
-  .top-nav { margin-bottom: 12px; }
-  .top-nav a { font-size: 14px; color: var(--sub); }
-  h1 { font-size: 22px; margin: 8px 0 4px; }
-  .meta { color: var(--sub); font-size: 13px; margin-bottom: 20px; }
-  .fail-note { color: var(--warm); }
-  .banner-warn {
-    background: rgba(240,166,58,0.12); border: 1px solid var(--gold); color: var(--gold);
-    padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 20px;
-  }
-  .totalbar {
-    background: var(--card2); border: 1px solid var(--line); border-radius: 10px;
-    padding: 14px 18px; margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
-  }
-  .totalbar .label { color: var(--sub); font-size: 13px; }
-  .totalbar .big { font-size: 24px; font-weight: 700; }
-  section { margin-bottom: 32px; }
-  section > h2 { font-size: 17px; border-left: 3px solid var(--accent); padding-left: 10px; margin-bottom: 14px; }
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow: hidden;
-  }
-  .card-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-  .card-head h3 { font-size: 15px; margin: 0; color: var(--txt); }
-  .subtotal { font-size: 12px; color: var(--sub); }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; color: var(--sub); font-weight: 500; padding: 6px 4px; border-bottom: 1px solid var(--line); }
-  td { padding: 6px 4px; border-bottom: 1px solid var(--line); }
-  td.num { text-align: right; white-space: nowrap; }
-  td.sub { color: var(--sub); }
-  tr:last-child td { border-bottom: none; }
-  .chg { font-weight: 600; }
-  .chg.up { color: var(--accent2); }
-  .chg.down { color: var(--warm); }
-  .chg.flat { color: var(--sub); font-weight: 400; }
-  .chg.new { color: var(--gold); }
-  .chg.fail { color: var(--warm); font-weight: 400; font-size: 12px; }
-  .top-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px; }
-  @media (max-width: 700px) { .top-grid { grid-template-columns: 1fr; } }
-  .top-box { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
-  .top-box h3 { font-size: 14px; margin: 0 0 10px; }
-  .top-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-  .top-row:last-child { border-bottom: none; }
-  .empty { color: var(--sub); font-size: 13px; }
-  footer { color: var(--sub); font-size: 12px; margin-top: 30px; border-top: 1px solid var(--line); padding-top: 14px; }
+:root {
+  --bg:#0f1115; --card:#191c23; --card2:#1f232c; --line:#2b303b;
+  --txt:#e8eaed; --sub:#9aa3b2; --accent:#4f8cff; --accent2:#2ecc9b; --warm:#e0533d; --gold:#f0a63a;
+}
+* { box-sizing: border-box; }
+body {
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height:1.5;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 60px; }
+header { margin-bottom: 18px; }
+.back { color: var(--accent); text-decoration:none; font-size:14px; }
+.back:hover { text-decoration:underline; }
+h1 { font-size: 26px; margin: 10px 0 12px; }
+h2 { font-size: 20px; margin: 0; }
+h3 { font-size: 15px; margin: 0; color: var(--txt); }
+.meta { display:flex; flex-wrap:wrap; gap: 14px 22px; color: var(--sub); font-size: 14px; }
+.meta b { color: var(--txt); }
+.notice {
+  background: rgba(240,166,58,0.12); border: 1px solid var(--gold); color: var(--gold);
+  padding: 10px 14px; border-radius: 8px; margin: 14px 0; font-size: 14px;
+}
+.notice.warn { background: rgba(224,83,61,0.12); border-color: var(--warm); color: var(--warm); }
+section { margin-top: 30px; }
+.section-title { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom: 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.grand-total { font-size: 15px; color: var(--sub); }
+.grand-total b { color: var(--txt); font-size: 18px; }
+.grid { display:grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 760px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  h1 { font-size: 22px; }
+}
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; overflow: hidden;
+}
+.card-head { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom: 10px; }
+.subtotal { font-size: 13px; color: var(--sub); }
+.subtotal b { color: var(--txt); }
+table { width:100%; border-collapse: collapse; font-size: 14px; }
+th { text-align:left; color: var(--sub); font-weight: 500; font-size: 12px; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+td { padding: 7px 4px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+td a { color: var(--txt); text-decoration:none; }
+td a:hover { color: var(--accent); text-decoration:underline; }
+.num { text-align:right; white-space:nowrap; }
+.sub { color: var(--sub); }
+.delta { font-weight:600; }
+.delta.up { color: var(--accent2); }
+.delta.down { color: var(--warm); }
+.delta.flat { color: var(--sub); font-weight:400; }
+.top-grid .card { background: var(--card2); }
+.top-card { }
+.top-row {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px; flex-wrap: wrap;
+}
+.top-row:last-child { border-bottom:none; }
+.top-row a { color: var(--txt); text-decoration:none; flex: 1 1 auto; min-width: 140px; }
+.top-row a:hover { color: var(--accent); text-decoration:underline; }
+.empty { color: var(--sub); font-size: 14px; padding: 8px 0; }
+footer { margin-top: 40px; color: var(--sub); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top-nav"><a href="index.html">← 返回情报中心</a></div>
-  <h1>TAISO 广告数追踪</h1>
-  <div class="meta">
-    本次日期：2026-09-25 ｜ 上次日期：2026-09-24 ｜ 追踪主页总数：81 
-  </div>
+  <header>
+    <a class="back" href="index.html">← 返回情报中心</a>
+    <h1>TAISO 广告数追踪</h1>
+    <div class="meta">
+      <span>本次：<b>2026-09-26</b></span>
+      <span>上次：<b>2026-09-25</b></span>
+      <span>主页总数：<b>81</b></span>
+      <span>查询失败：<b>0</b></span>
+    </div>
+  </header>
+
+  
   
 
-  <div class="totalbar">
-    <div>
-      <div class="label">自家品牌广告总数（本次）</div>
-      <div class="big">1562</div>
-    </div>
-    <div>
-      <div class="label">上次</div>
-      <div class="big" style="font-size:18px;color:var(--sub)">1745</div>
-    </div>
-    <div>
-      <div class="label">变化</div>
-      <div class="big" style="font-size:18px"><span class="chg down">▼183</span></div>
-    </div>
-  </div>
-
   <section>
-    <h2>自家品牌</h2>
-    <div class="grid">
+    <div class="section-title">
+      <h2>① 自家品牌</h2>
+      <div class="grand-total">
+        自家广告总数：<b>1722</b>
+        <span class="sub">（上次 1562）</span>
+        <span class="delta up">▲160</span>
+      </div>
+    </div>
+    <div class="grid grid-2">
       
     <div class="card">
       <div class="card-head">
         <h3>Hishin</h3>
-        <span class="subtotal">小计 1207（上次 1357，-150）</span>
+        <div class="subtotal">小计：<b>1361</b> <span class="sub">(上次 1207)</span> <span class="delta up">▲154</span></div>
       </div>
       <table>
-        <thead><tr><th>产品</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>产品</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=495741463622654&media_type=all" target="_blank" rel="noopener">Hishin DietGrain 黑食瘦身</a></td>
-          <td class="num">116</td>
-          <td class="num sub">137</td>
-          <td class="num"><span class="chg down">▼21</span></td>
+          <td class="num">144</td>
+          <td class="num sub">116</td>
+          <td class="num delta up">▲28</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1165181186672383&media_type=all" target="_blank" rel="noopener">Hishin EggOn 备孕</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=585522571314076&media_type=all" target="_blank" rel="noopener">Hishin Enerlean Gold 营养瘦身</a></td>
           <td class="num">61</td>
-          <td class="num sub">64</td>
-          <td class="num"><span class="chg down">▼3</span></td>
+          <td class="num sub">61</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=587407444461405&media_type=all" target="_blank" rel="noopener">Hishin EyeVita 护眼王</a></td>
-          <td class="num">105</td>
-          <td class="num sub">126</td>
-          <td class="num"><span class="chg down">▼21</span></td>
+          <td class="num">97</td>
+          <td class="num sub">105</td>
+          <td class="num delta down">▼8</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=735514456301262&media_type=all" target="_blank" rel="noopener">Hishin GlowGrain 丰胸代餐</a></td>
-          <td class="num">65</td>
-          <td class="num sub">76</td>
-          <td class="num"><span class="chg down">▼11</span></td>
+          <td class="num">84</td>
+          <td class="num sub">65</td>
+          <td class="num delta up">▲19</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=999290533267461&media_type=all" target="_blank" rel="noopener">Hishin GlowPlus 回春丰胸软糖</a></td>
-          <td class="num">73</td>
-          <td class="num sub">90</td>
-          <td class="num"><span class="chg down">▼17</span></td>
+          <td class="num">77</td>
+          <td class="num sub">73</td>
+          <td class="num delta up">▲4</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1001867503007392&media_type=all" target="_blank" rel="noopener">Hishin Androsyn 男性</a></td>
-          <td class="num">78</td>
-          <td class="num sub">101</td>
-          <td class="num"><span class="chg down">▼23</span></td>
+          <td class="num">87</td>
+          <td class="num sub">78</td>
+          <td class="num delta up">▲9</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1179743021889364&media_type=all" target="_blank" rel="noopener">Hishin BurnBean 燃豆咖啡代餐</a></td>
-          <td class="num">25</td>
-          <td class="num sub">33</td>
-          <td class="num"><span class="chg down">▼8</span></td>
+          <td class="num">37</td>
+          <td class="num sub">25</td>
+          <td class="num delta up">▲12</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126629397197488&media_type=all" target="_blank" rel="noopener">Hishin EaseNight 睡眠软糖</a></td>
-          <td class="num">12</td>
-          <td class="num sub">13</td>
-          <td class="num"><span class="chg down">▼1</span></td>
+          <td class="num">18</td>
+          <td class="num sub">12</td>
+          <td class="num delta up">▲6</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1088056967731023&media_type=all" target="_blank" rel="noopener">Hishin HemoGreen 云芝仙人掌</a></td>
           <td class="num">20</td>
-          <td class="num sub">35</td>
-          <td class="num"><span class="chg down">▼15</span></td>
+          <td class="num sub">20</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=481304608399690&media_type=all" target="_blank" rel="noopener">Hishin NMN Glow+ 回春密</a></td>
-          <td class="num">75</td>
-          <td class="num sub">82</td>
-          <td class="num"><span class="chg down">▼7</span></td>
+          <td class="num">92</td>
+          <td class="num sub">75</td>
+          <td class="num delta up">▲17</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1172474949282557&media_type=all" target="_blank" rel="noopener">Hishin Oatsy One 护胃瘦身麦</a></td>
-          <td class="num">89</td>
-          <td class="num sub">118</td>
-          <td class="num"><span class="chg down">▼29</span></td>
+          <td class="num">101</td>
+          <td class="num sub">89</td>
+          <td class="num delta up">▲12</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106644649144089&media_type=all" target="_blank" rel="noopener">Hishin Regen 血糖管理专家</a></td>
           <td class="num">5</td>
           <td class="num sub">5</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=756723287530405&media_type=all" target="_blank" rel="noopener">Hishin Regen Gold 降糖早餐</a></td>
-          <td class="num">64</td>
-          <td class="num sub">71</td>
-          <td class="num"><span class="chg down">▼7</span></td>
+          <td class="num">84</td>
+          <td class="num sub">64</td>
+          <td class="num delta up">▲20</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1147990278401167&media_type=all" target="_blank" rel="noopener">Hishin Regen Core 降糖王</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1194612880393343&media_type=all" target="_blank" rel="noopener">Hishin Regen Cocoa 降糖可可</a></td>
           <td class="num">21</td>
-          <td class="num sub">22</td>
-          <td class="num"><span class="chg down">▼1</span></td>
+          <td class="num sub">21</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=725761530610175&media_type=all" target="_blank" rel="noopener">Hishin Regena 清糖王(待确认)</a></td>
-          <td class="num">184</td>
-          <td class="num sub">168</td>
-          <td class="num"><span class="chg up">▲16</span></td>
+          <td class="num">217</td>
+          <td class="num sub">184</td>
+          <td class="num delta up">▲33</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1053219611210831&media_type=all" target="_blank" rel="noopener">Hishin XLite Plus 早燃晚排</a></td>
           <td class="num">109</td>
-          <td class="num sub">116</td>
-          <td class="num"><span class="chg down">▼7</span></td>
+          <td class="num sub">109</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=678457882024663&media_type=all" target="_blank" rel="noopener">Hishin XSlim 控食王</a></td>
           <td class="num">18</td>
           <td class="num sub">18</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=862312533642583&media_type=all" target="_blank" rel="noopener">Hishin ZenGastro 健脾护胃王</a></td>
           <td class="num">7</td>
           <td class="num sub">7</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=650533898139164&media_type=all" target="_blank" rel="noopener">Hishin Prune (Taishin排毒黑枣精)</a></td>
-          <td class="num">80</td>
-          <td class="num sub">75</td>
-          <td class="num"><span class="chg up">▲5</span></td>
+          <td class="num">82</td>
+          <td class="num sub">80</td>
+          <td class="num delta up">▲2</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1254623947731642&media_type=all" target="_blank" rel="noopener">Hishin Prune (Taishin植萃排毒黑枣)</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr></tbody>
+          <td class="num delta flat">–</td>
+        </tr>
+        </tbody>
       </table>
     </div>
     <div class="card">
       <div class="card-head">
         <h3>Taishin</h3>
-        <span class="subtotal">小计 155（上次 169，-14）</span>
+        <div class="subtotal">小计：<b>165</b> <span class="sub">(上次 155)</span> <span class="delta up">▲10</span></div>
       </div>
       <table>
-        <thead><tr><th>产品</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>产品</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=708374739034166&media_type=all" target="_blank" rel="noopener">Taishin Taiso 苹果醋</a></td>
-          <td class="num">22</td>
-          <td class="num sub">36</td>
-          <td class="num"><span class="chg down">▼14</span></td>
+          <td class="num">34</td>
+          <td class="num sub">22</td>
+          <td class="num delta up">▲12</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=890810647452477&media_type=all" target="_blank" rel="noopener">Taishin Taishou 苹果醋软糖</a></td>
-          <td class="num">133</td>
+          <td class="num">131</td>
           <td class="num sub">133</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr></tbody>
+          <td class="num delta down">▼2</td>
+        </tr>
+        </tbody>
       </table>
     </div>
     <div class="card">
       <div class="card-head">
         <h3>Taiyo</h3>
-        <span class="subtotal">小计 159（上次 173，-14）</span>
+        <div class="subtotal">小计：<b>149</b> <span class="sub">(上次 159)</span> <span class="delta down">▼10</span></div>
       </div>
       <table>
-        <thead><tr><th>产品</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>产品</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=112553648172794&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 护膝专家</a></td>
           <td class="num">48</td>
-          <td class="num sub">59</td>
-          <td class="num"><span class="chg down">▼11</span></td>
+          <td class="num sub">48</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117097977986532&media_type=all" target="_blank" rel="noopener">Taiyo KneeGuard 线下旗舰店</a></td>
           <td class="num">11</td>
           <td class="num sub">11</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=515886858269681&media_type=all" target="_blank" rel="noopener">Taiyo NeckGuard 颈椎专家</a></td>
           <td class="num">22</td>
-          <td class="num sub">28</td>
-          <td class="num"><span class="chg down">▼6</span></td>
+          <td class="num sub">22</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107789959035924&media_type=all" target="_blank" rel="noopener">Taiyo WaistGuard 脊椎专家(待确认)</a></td>
-          <td class="num">31</td>
+          <td class="num">29</td>
           <td class="num sub">31</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta down">▼2</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1034190033116290&media_type=all" target="_blank" rel="noopener">Taiyo Patch 药贴王</a></td>
-          <td class="num">47</td>
-          <td class="num sub">44</td>
-          <td class="num"><span class="chg up">▲3</span></td>
-        </tr></tbody>
+          <td class="num">39</td>
+          <td class="num sub">47</td>
+          <td class="num delta down">▼8</td>
+        </tr>
+        </tbody>
       </table>
     </div>
     <div class="card">
       <div class="card-head">
         <h3>Pure Harmony</h3>
-        <span class="subtotal">小计 41（上次 46，-5）</span>
+        <div class="subtotal">小计：<b>47</b> <span class="sub">(上次 41)</span> <span class="delta up">▲6</span></div>
       </div>
       <table>
-        <thead><tr><th>产品</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>产品</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1164831950050337&media_type=all" target="_blank" rel="noopener">Pure Harmony Viproz Plus 男人救星</a></td>
-          <td class="num">38</td>
-          <td class="num sub">43</td>
-          <td class="num"><span class="chg down">▼5</span></td>
+          <td class="num">42</td>
+          <td class="num sub">38</td>
+          <td class="num delta up">▲4</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=561719493701118&media_type=all" target="_blank" rel="noopener">Pure Harmony Vitanest 金丝瘦身燕窝</a></td>
-          <td class="num">3</td>
+          <td class="num">5</td>
           <td class="num sub">3</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr></tbody>
+          <td class="num delta up">▲2</td>
+        </tr>
+        </tbody>
       </table>
     </div>
     </div>
   </section>
 
   <section>
-    <h2>同赛道对标（竞品）</h2>
-    <div class="top-grid">
-      <div class="top-box">
-        <h3>Top 5 涨幅</h3>
+    <div class="section-title"><h2>② 同赛道对标</h2></div>
+    <div class="grid grid-2 top-grid">
+      <div class="card top-card">
+        <div class="card-head"><h3>📈 Top 5 涨幅（竞品）</h3></div>
         
         <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a>
-          <span class="chg up">▲12</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104840942700034&media_type=all" target="_blank" rel="noopener">Great Tree 红麴之父</a>
-          <span class="chg up">▲11</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=248196168370336&media_type=all" target="_blank" rel="noopener">Beyoute 瘦身Kombucha</a>
-          <span class="chg up">▲5</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=110780597014142&media_type=all" target="_blank" rel="noopener">Belife 燃脂</a>
-          <span class="chg up">▲5</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a>
-          <span class="chg up">▲4</span>
-        </div>
-      </div>
-      <div class="top-box">
-        <h3>Top 5 跌幅</h3>
-        
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a>
-          <span class="chg down">▼12</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103413825416567&media_type=all" target="_blank" rel="noopener">Mzn 日本塑身益菌王</a>
-          <span class="chg down">▼11</span>
-        </div>
-        <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a>
-          <span class="chg down">▼9</span>
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a>
+          <span class="delta up">▲50</span>
+          <span class="sub">(49 → 99)</span>
         </div>
         <div class="top-row">
           <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a>
-          <span class="chg down">▼9</span>
+          <span class="delta up">▲44</span>
+          <span class="sub">(38 → 82)</span>
         </div>
         <div class="top-row">
-          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=461892820321224&media_type=all" target="_blank" rel="noopener">断糖专家</a>
-          <span class="chg down">▼5</span>
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a>
+          <span class="delta up">▲31</span>
+          <span class="sub">(121 → 152)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a>
+          <span class="delta up">▲13</span>
+          <span class="sub">(13 → 26)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=394824403704623&media_type=all" target="_blank" rel="noopener">NuPluse 心生命</a>
+          <span class="delta up">▲5</span>
+          <span class="sub">(125 → 130)</span>
+        </div>
+      </div>
+      <div class="card top-card">
+        <div class="card-head"><h3>📉 Top 5 跌幅（竞品）</h3></div>
+        
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a>
+          <span class="delta down">▼13</span>
+          <span class="sub">(128 → 115)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a>
+          <span class="delta down">▼6</span>
+          <span class="sub">(24 → 18)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1091617867371366&media_type=all" target="_blank" rel="noopener">Byeing spiro 小瑙</a>
+          <span class="delta down">▼6</span>
+          <span class="sub">(11 → 5)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103413825416567&media_type=all" target="_blank" rel="noopener">Mzn 日本塑身益菌王</a>
+          <span class="delta down">▼5</span>
+          <span class="sub">(55 → 50)</span>
+        </div>
+        <div class="top-row">
+          <a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=634495616406565&media_type=all" target="_blank" rel="noopener">Minerva 植物Collagen代餐</a>
+          <span class="delta down">▼4</span>
+          <span class="sub">(87 → 83)</span>
         </div>
       </div>
     </div>
-    <div class="grid">
+    <div class="grid grid-2">
       
     <div class="card">
       <div class="card-head"><h3>瘦身</h3></div>
       <table>
-        <thead><tr><th>品牌</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>品牌</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a></td>
-          <td class="num">255</td>
-          <td class="num sub">243</td>
-          <td class="num"><span class="chg up">▲12</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a></td>
+          <td class="num">99</td>
+          <td class="num sub">49</td>
+          <td class="num delta up">▲50</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=248196168370336&media_type=all" target="_blank" rel="noopener">Beyoute 瘦身Kombucha</a></td>
-          <td class="num">17</td>
-          <td class="num sub">12</td>
-          <td class="num"><span class="chg up">▲5</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a></td>
+          <td class="num">152</td>
+          <td class="num sub">121</td>
+          <td class="num delta up">▲31</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a></td>
+          <td class="num">21</td>
+          <td class="num sub">18</td>
+          <td class="num delta up">▲3</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=317011621492659&media_type=all" target="_blank" rel="noopener">Byeing Zenso 瘦身</a></td>
+          <td class="num">12</td>
+          <td class="num sub">11</td>
+          <td class="num delta up">▲1</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1096729120188510&media_type=all" target="_blank" rel="noopener">SimSo 30天简单瘦</a></td>
+          <td class="num">9</td>
+          <td class="num sub">8</td>
+          <td class="num delta up">▲1</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=201794843170116&media_type=all" target="_blank" rel="noopener">Kinohimitsu</a></td>
+          <td class="num">48</td>
+          <td class="num sub">47</td>
+          <td class="num delta up">▲1</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=110780597014142&media_type=all" target="_blank" rel="noopener">Belife 燃脂</a></td>
           <td class="num">32</td>
-          <td class="num sub">27</td>
-          <td class="num"><span class="chg up">▲5</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a></td>
-          <td class="num">86</td>
-          <td class="num sub">82</td>
-          <td class="num"><span class="chg up">▲4</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100301936152629&media_type=all" target="_blank" rel="noopener">The Purest Co</a></td>
-          <td class="num">46</td>
-          <td class="num sub">42</td>
-          <td class="num"><span class="chg up">▲4</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1048672944997205&media_type=all" target="_blank" rel="noopener">Befecto 带你健康瘦</a></td>
-          <td class="num">49</td>
-          <td class="num sub">46</td>
-          <td class="num"><span class="chg up">▲3</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1096729120188510&media_type=all" target="_blank" rel="noopener">SimSo 30天简单瘦</a></td>
-          <td class="num">8</td>
-          <td class="num sub">5</td>
-          <td class="num"><span class="chg up">▲3</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=798972756641147&media_type=all" target="_blank" rel="noopener">SimSo HQ</a></td>
-          <td class="num">18</td>
-          <td class="num sub">17</td>
-          <td class="num"><span class="chg up">▲1</span></td>
+          <td class="num sub">32</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103498079478956&media_type=all" target="_blank" rel="noopener">Perzenso 瘦身系统</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=317011621492659&media_type=all" target="_blank" rel="noopener">Byeing Zenso 瘦身</a></td>
-          <td class="num">11</td>
-          <td class="num sub">11</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=971645142694097&media_type=all" target="_blank" rel="noopener">Byeing Zenso 真瘦</a></td>
           <td class="num">3</td>
           <td class="num sub">3</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1128437340361708&media_type=all" target="_blank" rel="noopener">Whole &amp; Well 溶脂</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=330899167321574&media_type=all" target="_blank" rel="noopener">Ruijia 蕊佳红豆纤水茶</a></td>
           <td class="num">143</td>
           <td class="num sub">143</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=634495616406565&media_type=all" target="_blank" rel="noopener">Minerva 植物Collagen代餐</a></td>
-          <td class="num">87</td>
-          <td class="num sub">87</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=550309345059195&media_type=all" target="_blank" rel="noopener">Moon Moon Nubright</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104026822615350&media_type=all" target="_blank" rel="noopener">MIASO 碳油阻断</a></td>
           <td class="num">11</td>
           <td class="num sub">11</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=139922599204851&media_type=all" target="_blank" rel="noopener">DS Plus 燃饮咖啡</a></td>
           <td class="num">29</td>
           <td class="num sub">29</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=732281544153609&media_type=all" target="_blank" rel="noopener">Magic Mocca 养生咖啡</a></td>
           <td class="num">13</td>
           <td class="num sub">13</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=111692404933169&media_type=all" target="_blank" rel="noopener">巴黎女王 Paris Yee</a></td>
           <td class="num">5</td>
           <td class="num sub">5</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=108859705313136&media_type=all" target="_blank" rel="noopener">The Future Food 营养先锋</a></td>
           <td class="num">4</td>
           <td class="num sub">4</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=798972756641147&media_type=all" target="_blank" rel="noopener">SimSo HQ</a></td>
+          <td class="num">18</td>
+          <td class="num sub">18</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=264798386722101&media_type=all" target="_blank" rel="noopener">凯歆 突破卡重</a></td>
           <td class="num">14</td>
           <td class="num sub">14</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100228956090264&media_type=all" target="_blank" rel="noopener">纯天然椰花养生醋</a></td>
+          <td class="num">255</td>
+          <td class="num sub">255</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104153315663754&media_type=all" target="_blank" rel="noopener">Spiro排毒糖 淇淇</a></td>
           <td class="num">15</td>
           <td class="num sub">15</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1064140376772756&media_type=all" target="_blank" rel="noopener">辣椒仔 Spiro Plus</a></td>
           <td class="num">6</td>
           <td class="num sub">6</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1091617867371366&media_type=all" target="_blank" rel="noopener">Byeing spiro 小瑙</a></td>
-          <td class="num">11</td>
-          <td class="num sub">11</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107181650640216&media_type=all" target="_blank" rel="noopener">Mira-Q Detox</a></td>
           <td class="num">18</td>
           <td class="num sub">18</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102688172513578&media_type=all" target="_blank" rel="noopener">Zinnia Inner Cleanse 排毒王</a></td>
           <td class="num">30</td>
           <td class="num sub">30</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=768816909649757&media_type=all" target="_blank" rel="noopener">CellDox 排毒清肠饮</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100264976233500&media_type=all" target="_blank" rel="noopener">Genten Enzyme 野菜酵素</a></td>
           <td class="num">2</td>
           <td class="num sub">2</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100301936152629&media_type=all" target="_blank" rel="noopener">The Purest Co</a></td>
+          <td class="num">46</td>
+          <td class="num sub">46</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=100676302765315&media_type=all" target="_blank" rel="noopener">Total Image</a></td>
           <td class="num">28</td>
           <td class="num sub">28</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105428315658811&media_type=all" target="_blank" rel="noopener">TriHealth Probiotic</a></td>
           <td class="num">80</td>
           <td class="num sub">80</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a></td>
-          <td class="num">24</td>
-          <td class="num sub">25</td>
-          <td class="num"><span class="chg down">▼1</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=248196168370336&media_type=all" target="_blank" rel="noopener">Beyoute 瘦身Kombucha</a></td>
+          <td class="num">16</td>
+          <td class="num sub">17</td>
+          <td class="num delta down">▼1</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=201794843170116&media_type=all" target="_blank" rel="noopener">Kinohimitsu</a></td>
-          <td class="num">47</td>
-          <td class="num sub">48</td>
-          <td class="num"><span class="chg down">▼1</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=634495616406565&media_type=all" target="_blank" rel="noopener">Minerva 植物Collagen代餐</a></td>
+          <td class="num">83</td>
+          <td class="num sub">87</td>
+          <td class="num delta down">▼4</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=310668346413198&media_type=all" target="_blank" rel="noopener">Goli (国际)</a></td>
-          <td class="num">18</td>
-          <td class="num sub">27</td>
-          <td class="num"><span class="chg down">▼9</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=510214372185513&media_type=all" target="_blank" rel="noopener">Mizino 巧克力瘦身饮</a></td>
+          <td class="num">82</td>
+          <td class="num sub">86</td>
+          <td class="num delta down">▼4</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103413825416567&media_type=all" target="_blank" rel="noopener">Mzn 日本塑身益菌王</a></td>
-          <td class="num">55</td>
-          <td class="num sub">66</td>
-          <td class="num"><span class="chg down">▼11</span></td>
+          <td class="num">50</td>
+          <td class="num sub">55</td>
+          <td class="num delta down">▼5</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=883731294821831&media_type=all" target="_blank" rel="noopener">NuShape 神塑燕麦</a></td>
-          <td class="num">121</td>
-          <td class="num sub">133</td>
-          <td class="num"><span class="chg down">▼12</span></td>
-        </tr></tbody>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=102452659210344&media_type=all" target="_blank" rel="noopener">Ease30 体态管理</a></td>
+          <td class="num">18</td>
+          <td class="num sub">24</td>
+          <td class="num delta down">▼6</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1091617867371366&media_type=all" target="_blank" rel="noopener">Byeing spiro 小瑙</a></td>
+          <td class="num">5</td>
+          <td class="num sub">11</td>
+          <td class="num delta down">▼6</td>
+        </tr>
+        </tbody>
       </table>
     </div>
       
     <div class="card">
       <div class="card-head"><h3>血糖</h3></div>
       <table>
-        <thead><tr><th>品牌</th><th>本次</th><th>上次</th><th>涨跌</th></tr></thead>
+        <thead><tr><th>品牌</th><th class="num">本次</th><th class="num">上次</th><th class="num">涨跌</th></tr></thead>
         <tbody>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104840942700034&media_type=all" target="_blank" rel="noopener">Great Tree 红麴之父</a></td>
-          <td class="num">24</td>
-          <td class="num sub">13</td>
-          <td class="num"><span class="chg up">▲11</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a></td>
+          <td class="num">82</td>
+          <td class="num sub">38</td>
+          <td class="num delta up">▲44</td>
         </tr>
         <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126924703832571&media_type=all" target="_blank" rel="noopener">Kingwell 通芯王</a></td>
-          <td class="num">151</td>
-          <td class="num sub">150</td>
-          <td class="num"><span class="chg up">▲1</span></td>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a></td>
+          <td class="num">26</td>
+          <td class="num sub">13</td>
+          <td class="num delta up">▲13</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=394824403704623&media_type=all" target="_blank" rel="noopener">NuPluse 心生命</a></td>
+          <td class="num">130</td>
+          <td class="num sub">125</td>
+          <td class="num delta up">▲5</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a></td>
+          <td class="num">155</td>
+          <td class="num sub">152</td>
+          <td class="num delta up">▲3</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=461892820321224&media_type=all" target="_blank" rel="noopener">断糖专家</a></td>
+          <td class="num">20</td>
+          <td class="num sub">20</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=103386082411176&media_type=all" target="_blank" rel="noopener">NeBora 控糖营养奶</a></td>
           <td class="num">31</td>
           <td class="num sub">31</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=101233342731412&media_type=all" target="_blank" rel="noopener">NeBora by D&#x27;Pro</a></td>
           <td class="num">7</td>
           <td class="num sub">7</td>
-          <td class="num"><span class="chg flat">–</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=746723668522288&media_type=all" target="_blank" rel="noopener">HH NuGluko 苦瓜粉</a></td>
-          <td class="num">152</td>
-          <td class="num sub">152</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=107781472169894&media_type=all" target="_blank" rel="noopener">GoHerb 三高红籽油</a></td>
           <td class="num">35</td>
           <td class="num sub">35</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=104840942700034&media_type=all" target="_blank" rel="noopener">Great Tree 红麴之父</a></td>
+          <td class="num">24</td>
+          <td class="num sub">24</td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106079252379358&media_type=all" target="_blank" rel="noopener">忆品茶 心血管</a></td>
+          <td class="num">22</td>
+          <td class="num sub">22</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=687273617808831&media_type=all" target="_blank" rel="noopener">Pris Wellness</a></td>
           <td class="num">0</td>
           <td class="num sub">0</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=1126924703832571&media_type=all" target="_blank" rel="noopener">Kingwell 通芯王</a></td>
+          <td class="num">151</td>
+          <td class="num sub">151</td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=117295454729212&media_type=all" target="_blank" rel="noopener">GML 冠脉宁</a></td>
           <td class="num">84</td>
           <td class="num sub">84</td>
-          <td class="num"><span class="chg flat">–</span></td>
+          <td class="num delta flat">–</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=105565861190206&media_type=all" target="_blank" rel="noopener">Multigrainz 谷物血糖</a></td>
-          <td class="num">84</td>
-          <td class="num sub">85</td>
-          <td class="num"><span class="chg down">▼1</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=519898171187304&media_type=all" target="_blank" rel="noopener">清心宝 Mafixcure</a></td>
-          <td class="num">13</td>
-          <td class="num sub">15</td>
-          <td class="num"><span class="chg down">▼2</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=394824403704623&media_type=all" target="_blank" rel="noopener">NuPluse 心生命</a></td>
-          <td class="num">125</td>
-          <td class="num sub">127</td>
-          <td class="num"><span class="chg down">▼2</span></td>
+          <td class="num">80</td>
+          <td class="num sub">84</td>
+          <td class="num delta down">▼4</td>
         </tr>
         <tr>
           <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106012182175891&media_type=all" target="_blank" rel="noopener">MOCCO 莫愁巧克力</a></td>
-          <td class="num">128</td>
-          <td class="num sub">131</td>
-          <td class="num"><span class="chg down">▼3</span></td>
+          <td class="num">115</td>
+          <td class="num sub">128</td>
+          <td class="num delta down">▼13</td>
         </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=106079252379358&media_type=all" target="_blank" rel="noopener">忆品茶 心血管</a></td>
-          <td class="num">22</td>
-          <td class="num sub">25</td>
-          <td class="num"><span class="chg down">▼3</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=461892820321224&media_type=all" target="_blank" rel="noopener">断糖专家</a></td>
-          <td class="num">20</td>
-          <td class="num sub">25</td>
-          <td class="num"><span class="chg down">▼5</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=MY&view_all_page_id=744709168714799&media_type=all" target="_blank" rel="noopener">断糖王 天然降糖专家</a></td>
-          <td class="num">38</td>
-          <td class="num sub">47</td>
-          <td class="num"><span class="chg down">▼9</span></td>
-        </tr></tbody>
+        </tbody>
       </table>
     </div>
     </div>
   </section>
 
   <footer>
-    数字是 Meta 广告库的估计值（estimated_total_count），±1–2 的小幅波动属于正常范围，重点看明显的大幅变动。数据来源：Meta Ad Library（国家：MY，状态：ACTIVE）。
+    数字为 Meta 广告库估计值（estimated_total_count），±1–2 属正常波动，重点看大幅变化。
   </footer>
 </div>
+
 </body>
 </html>
